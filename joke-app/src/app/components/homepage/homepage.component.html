@@ -1,0 +1,31 @@
+<mat-toolbar>
+  <button
+    mat-icon-button
+    class="example-icon"
+    aria-label="Example icon-button with menu icon"
+  >
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span>My Jokes App</span>
+  <span class="example-spacer"></span>
+  <button
+    *ngIf="loginService.isUserAuthenticated()"
+    (click)="logOut()"
+    mat-icon-button
+    class="example-icon"
+    aria-label="Example icon-button with share icon"
+  >
+    <mat-icon>logout</mat-icon>
+  </button>
+</mat-toolbar>
+
+<div *ngIf="!loginService.isUserAuthenticated()">
+  <div class="login-container">
+    <div layout="row" layout-align="center center" style="min-height: 500px">
+      <app-login></app-login>
+    </div>
+  </div>
+</div>
+<div *ngIf="loginService.isUserAuthenticated()">
+  <router-outlet></router-outlet>
+</div>

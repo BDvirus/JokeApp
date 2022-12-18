@@ -1,0 +1,36 @@
+<mat-card appearance="outlined">
+  <mat-card-content>
+    <div class="header">
+      <h2>Login</h2>
+    </div>
+
+    <form [formGroup]="login" (ngSubmit)="submit()" autocomplete="off">
+      <p>
+        <mat-form-field>
+          <mat-label> Username: </mat-label>
+          <input matInput type="text" formControlName="username" />
+          <mat-error *ngIf="login.get('username')?.errors">
+            Invalid E-Mail Pattern</mat-error
+          >
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field>
+          <mat-label> Password: </mat-label>
+          <input matInput type="password" formControlName="password" />
+          <mat-error *ngIf="login.get('password')?.errors">
+            Min length should be 3.
+          </mat-error>
+        </mat-form-field>
+      </p>
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        [disabled]="!login.valid"
+      >
+        Sign in
+      </button>
+    </form>
+  </mat-card-content>
+</mat-card>

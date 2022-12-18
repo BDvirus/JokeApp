@@ -1,0 +1,36 @@
+<h1 mat-dialog-title>Joke {{ currentJoke.id }}</h1>
+
+<div mat-dialog-content>
+  <div *ngIf="joke.type == 'single'; else twopart">
+    {{ currentJoke.joke }}
+  </div>
+
+  <ng-template #twopart>
+    <p>{{ currentJoke.setup }}</p>
+    <p>
+      {{ currentJoke.delivery }}
+    </p>
+  </ng-template>
+</div>
+<div mat-dialog-actions>
+  <mat-list>
+    <mat-list-item>
+      <div>Tell me another one like that</div>
+    </mat-list-item>
+    <mat-list-item>
+      <mat-chip-listbox aria-label="jokes">
+        <ng-container *ngFor="let joke of suggestedJokes">
+          <mat-chip-option (click)="onSelectionChange(joke)">
+            {{ currentJoke.category }}
+          </mat-chip-option>
+        </ng-container>
+      </mat-chip-listbox>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item>
+      <button mat-button [mat-dialog-close]="currentJoke.id" cdkFocusInitial>
+        Close
+      </button>
+    </mat-list-item>
+  </mat-list>
+</div>
